@@ -10,45 +10,33 @@
 #include <math.h>
 #include <vector>
 #include <list>
+#include <climits>
 
 using namespace std;
 
 #ifndef UTILS_H
 #define UTILS_H
 
+#define NUMVERTEX 10201
+
 float pointDistance(int x_inicial, int y_incial, int x_final, int y_final);
 
 class Edge{
 	public:
-		int origin;
-		int destiny;
-		int weight;
+		bool adj;
+		int distance;
 
-		Edge(int x, int y, int w){
-			this->origin = x;
-			this->destiny = y;
-			this->weight = w;
-		}
-
-		bool operator==(const Edge& n1) const{
-			if(n1.origin == this->origin && n1.destiny == this->destiny && n1.weight == this->weight)
-				return true;
-			return false;
+		Edge(){
+			this->adj = false;
+			this->distance = INT_MAX;
 		}
 };
 
 class Graph{
 	private:
-		vector< list<Edge> > grafo;
+		vector< vector<Edge> > grafo;
 	public:
-		Graph(int tam){
-			this->grafo.clear();
-			this->grafo.resize(tam);
-		}
-
-		void insertEdge(int x, int y, int w){
-			Edge* toInsert = new Edge(x, y, w);
-			grafo[x].push_back(*toInsert);
+		Graph() : grafo(NUMVERTEX, vector<Edge>(NUMVERTEX)){
 		}
 };
 
