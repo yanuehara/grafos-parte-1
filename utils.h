@@ -23,11 +23,9 @@ float pointDistance(int x_inicial, int y_incial, int x_final, int y_final);
 
 class Edge{
 	public:
-		bool adj;
-		int distance;
+		float distance;
 
 		Edge(){
-			this->adj = false;
 			this->distance = INT_MAX;
 		}
 };
