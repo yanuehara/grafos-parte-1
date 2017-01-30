@@ -40,6 +40,26 @@ class Graph{
 		vector< vector<Edge> > grafo;
 	public:
 		Graph() : grafo(NUMVERTEX, vector<Edge>(NUMVERTEX)){
+			for (int x = -50; x <= 50; x++) {
+				for (int y = -50; y <= 50; y++) {
+					if(x == 50 && y == 50 ) {	
+					}
+
+					else if(y == 50) {
+						addEdge(x, y, x+1, y);
+					}
+
+					else if(x == 50) {
+						addEdge(x, y, x, y+1);
+					}
+
+					else/*(x != 50 && y != 50)*/ {
+						addEdge(x, y, x, y+1); //Criando aresta para cima
+						addEdge(x+1, y, x+1, y); //Criando aresta para direita
+						addEdge(x, y, x+1, y+1); //Criando aresta diagonal direita para cima	
+					}
+				}
+			}
 		}
 
 		void addEdge(int x_inicial, int y_incial, int x_final, int y_final){
