@@ -41,6 +41,12 @@ class Graph{
 	public:
 		Graph() : grafo(NUMVERTEX, vector<Edge>(NUMVERTEX)){
 		}
+
+		void addEdge(int x_inicial, int y_incial, int x_final, int y_final){
+			int org = correctCoordinates(x_inicial, y_incial);
+			int dest = correctCoordinates(x_final, y_final);
+			grafo[org][dest].distance = grafo[dest][org].distance = pointDistance(x_inicial, x_final, y_incial, y_final);
+		}
 };
 
 #endif
