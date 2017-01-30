@@ -18,8 +18,13 @@ using namespace std;
 #define UTILS_H
 
 #define NUMVERTEX 10201
+#define TAMMATRIX 101
 
 float pointDistance(int x_inicial, int y_incial, int x_final, int y_final);
+
+inline int correctCoordinates(int x, int y){
+	return (x+50)*TAMMATRIX+(y+50);
+}
 
 class Edge{
 	public:
