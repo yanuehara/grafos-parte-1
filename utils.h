@@ -11,6 +11,10 @@
 #include <vector>
 #include <list>
 #include <climits>
+#include <cfloat>
+#include <queue>
+#include <stack>
+#include <iostream>
 
 using namespace std;
 
@@ -23,8 +27,16 @@ using namespace std;
 float pointDistance(int x_inicial, int y_incial, int x_final, int y_final);
 
 inline int correctCoordinates(int x, int y){
-	return (x+50)*TAMMATRIX+(y+50);
+	return ((x+50)*TAMMATRIX)+(y+50);
 }
+
+struct Comparator
+{
+  bool operator()(const pair<int, float> &p1, const pair<int, float> &p2) const
+  {
+    return p1.second > p2.second;
+  }
+};
 
 class Edge{
 	public:
@@ -42,7 +54,7 @@ class Graph{
 		Graph() : grafo(NUMVERTEX, vector<Edge>(NUMVERTEX)){
 			for (int x = -50; x <= 50; x++) {
 				for (int y = -50; y <= 50; y++) {
-					if(x == 50 && y == 50 ) {	
+					if(x == 50 && y == 50 ) {
 					}
 
 					else if(y == 50) {
@@ -74,6 +86,44 @@ class Graph{
 				grafo[vertex][i].distance = INT_MAX;
 				grafo[i][vertex].distance = INT_MAX;
 			}
+		}
+
+		float dijkstra(int x_inicial, int y_incial, int x_final, int y_final){
+			float dist[NUMVERTEX];
+			int path[NUMVERTEX];
+			priority_queue< pair<int, float>, vector<pair<int, float> >, Comparator > pq;
+
+			int org = correctCoordinates(x_inicial, y_incial);
+			int dest = correctCoordinates(x_final, y_final);
+
+			for (int i = 0; i < NUMVERTEX; i++) {
+				dist[i] = FLT_MAX;
+				path[i] = -1;
+			}
+
+			dist[org] = 0.0f;
+
+			pq.push(make_pair(org, dist[org]));
+
+			while(!pq.empty()){
+				int u = pq.top().first;
+				float w = pq.top().second;
+
+				if(u == dest) break;
+
+				pq.pop();
+
+				for(int i = 0; i < NUMVERTEX; i++){
+					int alt = dist[u] + grafo[u][NUMVERTEX].distance;
+					if(alt < dist[NUMVERTEX]){
+						dist[NUMVERTEX] = alt;
+						path[NUMVERTEX] = u;
+						pq.push(make_pair(NUMVERTEX, dist[NUMVERTEX]));
+					}
+				}
+			}
+
+			return dist[dest];
 		}
 };
 

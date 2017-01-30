@@ -17,6 +17,7 @@ using namespace std;
 int main(int argc, char* argv[]){
 	int x_inicial, y_inicial, x_final, y_final, n_obstaculos;
 	int x_obstaculo, y_obstaculo;
+	Graph *grafo = new Graph();
 
 	while(true){
 		cin >> x_inicial >> y_inicial >> x_final >> y_final >> n_obstaculos;
@@ -25,6 +26,9 @@ int main(int argc, char* argv[]){
 
 		for(int i = n_obstaculos; i != 0; i--){
 			cin >> x_obstaculo >> y_obstaculo;
+			grafo->removeVertex(x_obstaculo, y_obstaculo);
 		}
+		float dist = grafo->dijkstra(x_inicial, y_incial, x_final, y_final);
+		cout << dist << endl;
 	}
 }
