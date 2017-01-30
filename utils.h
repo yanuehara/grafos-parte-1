@@ -67,6 +67,14 @@ class Graph{
 			int dest = correctCoordinates(x_final, y_final);
 			grafo[org][dest].distance = grafo[dest][org].distance = pointDistance(x_inicial, x_final, y_incial, y_final);
 		}
+
+		void removeVertex(int x, int y){
+			int vertex = correctCoordinates(x, y);
+			for(int i = 0; i < NUMVERTEX; i++){
+				grafo[vertex][i].distance = INT_MAX;
+				grafo[i][vertex].distance = INT_MAX;
+			}
+		}
 };
 
 #endif
