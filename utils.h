@@ -55,8 +55,8 @@ class Graph{
 
 					else/*(x != 50 && y != 50)*/ {
 						addEdge(x, y, x, y+1); //Criando aresta para cima
-						addEdge(x+1, y, x+1, y); //Criando aresta para direita
-						addEdge(x, y, x+1, y+1); //Criando aresta diagonal direita para cima	
+						addEdge(x, y, x+1, y); //Criando aresta para direita
+						addEdge(x, y, x+1, y+1); //Criando aresta diagonal direita para cima
 					}
 				}
 			}
