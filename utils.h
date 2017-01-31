@@ -9,12 +9,9 @@
 
 #include <math.h>
 #include <vector>
-#include <list>
 #include <climits>
-#include <cfloat>
 #include <queue>
 #include <stack>
-#include <iostream>
 
 using namespace std;
 
