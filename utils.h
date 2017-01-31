@@ -69,7 +69,7 @@ class Graph{
 						addEdge(x, y, x, y+1); //Criando aresta para cima
 						addEdge(x, y, x+1, y); //Criando aresta para direita
 						addEdge(x, y, x+1, y+1); //Criando aresta diagonal direita para cima
-						addEdge(x, y+1, x+1, y); //Criando aresta diagonal invertida 
+						addEdge(x, y+1, x+1, y); //Criando aresta diagonal invertida
 					}
 				}
 			}
@@ -118,7 +118,7 @@ class Graph{
 					if(grafo[u][i].distance == INT_MAX)
 						continue;
 
-					int alt = w + grafo[u][i].distance;
+					float alt = w + grafo[u][i].distance;
 					if(alt < dist[i]){
 						dist[i] = alt;
 						path[i] = u;
