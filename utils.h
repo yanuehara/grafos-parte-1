@@ -88,7 +88,6 @@ class Graph{
 
 		float dijkstra(int x_inicial, int y_incial, int x_final, int y_final){
 			float dist[NUMVERTEX];
-			int path[NUMVERTEX];
 			priority_queue< pair<int, float>, vector<pair<int, float> >, Comparator > pq;
 
 			int org = correctCoordinates(x_inicial, y_incial);
@@ -96,7 +95,6 @@ class Graph{
 
 			for (int i = 0; i < NUMVERTEX; i++) {
 				dist[i] = INT_MAX;
-				path[i] = -1;
 			}
 
 			dist[org] = 0.0f;
@@ -118,7 +116,6 @@ class Graph{
 					float alt = w + grafo[u][i].distance;
 					if(alt < dist[i]){
 						dist[i] = alt;
-						path[i] = u;
 						pq.push(make_pair(i, dist[i]));
 					}
 				}
