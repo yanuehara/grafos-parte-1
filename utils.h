@@ -97,7 +97,7 @@ class Graph{
 			int dest = correctCoordinates(x_final, y_final);
 
 			for (int i = 0; i < NUMVERTEX; i++) {
-				dist[i] = FLT_MAX;
+				dist[i] = INT_MAX;
 				path[i] = -1;
 			}
 
@@ -114,11 +114,14 @@ class Graph{
 				pq.pop();
 
 				for(int i = 0; i < NUMVERTEX; i++){
-					int alt = dist[u] + grafo[u][NUMVERTEX].distance;
-					if(alt < dist[NUMVERTEX]){
-						dist[NUMVERTEX] = alt;
-						path[NUMVERTEX] = u;
-						pq.push(make_pair(NUMVERTEX, dist[NUMVERTEX]));
+					if(grafo[u][i].distance == INT_MAX)
+						continue;
+
+					int alt = w + grafo[u][i].distance;
+					if(alt < dist[i]){
+						dist[i] = alt;
+						path[i] = u;
+						pq.push(make_pair(i, dist[i]));
 					}
 				}
 			}
