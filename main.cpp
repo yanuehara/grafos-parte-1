@@ -9,6 +9,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
 
 #include "utils.h"
 
@@ -29,6 +30,8 @@ int main(int argc, char* argv[]){
 			grafo->removeVertex(x_obstaculo, y_obstaculo);
 		}
 		float dist = grafo->dijkstra(x_inicial, y_inicial, x_final, y_final);
+
+		cout << fixed << setprecision(2);
 		cout << dist << endl;
 
 		delete grafo;
